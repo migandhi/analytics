@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Client-Side Analytics Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- AG-Grid CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Analytics Dashboard</h1>
+    </header>
+
+    <div class="page-container">
+        <div class="control-panel card">
+            <div id="upload-container">
+                <h2>1. Load Your Data</h2>
+                <p>Select a CSV file to begin.</p>
+                <input type="file" id="csv-file-input" accept=".csv">
+            </div>
+
+            <div id="config-container" class="hidden">
+                <h2>2. Configure Your Dashboard</h2>
+                <div class="config-grid">
+                    <div class="chart-config">
+                        <h3>Chart 1</h3>
+                        <div class="config-group">
+                            <label for="chart1-dim">Category (e.g., Region)</label>
+                            <select id="chart1-dim"></select>
+                        </div>
+                        <div class="config-group">
+                            <label for="chart1-measure">Value (e.g., Sales)</label>
+                            <select id="chart1-measure"></select>
+                        </div>
+                        <div class="config-group">
+                            <label for="chart1-type">Chart Type</label>
+                            <select id="chart1-type">
+                                <option value="bar">Bar Chart</option>
+                                <option value="pie">Pie Chart</option>
+                                <option value="doughnut">Doughnut Chart</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-config">
+                        <h3>Chart 2</h3>
+                         <div class="config-group">
+                            <label for="chart2-dim">Category (e.g., Department)</label>
+                            <select id="chart2-dim"></select>
+                        </div>
+                        <div class="config-group">
+                            <label for="chart2-measure">Value (e.g., Salary)</label>
+                            <select id="chart2-measure"></select>
+                        </div>
+                        <div class="config-group">
+                            <label for="chart2-type">Chart Type</label>
+                            <select id="chart2-type">
+                                <option value="pie">Pie Chart</option>
+                                <option value="bar">Bar Chart</option>
+                                <option value="doughnut">Doughnut Chart</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button id="update-dashboard-btn" class="primary-btn">Generate Dashboard</button>
+                    <button id="reset-filters-btn" class="secondary-btn hidden">Reset All Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <main id="dashboard-main" class="hidden">
+            <div class="kpi-container">
+                <div class="kpi-box card">
+                    <h4>Total Records</h4>
+                    <p id="kpi-total-records">-</p>
+                </div>
+                 <div class="kpi-box card">
+                    <h4>Filtered Records</h4>
+                    <p id="kpi-filtered-records">-</p>
+                </div>
+                <div class="kpi-box card">
+                    <h4 id="kpi-sum-title">Sum of Value</h4>
+                    <p id="kpi-sum-value">-</p>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-box card">
+                    <h2 id="chart1-title">Chart 1</h2>
+                    <div class="canvas-wrapper">
+                        <canvas id="chart1"></canvas>
+                    </div>
+                </div>
+                <div class="chart-box card">
+                    <h2 id="chart2-title">Chart 2</h2>
+                     <div class="canvas-wrapper">
+                        <canvas id="chart2"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-container card">
+                 <h2>Data Explorer</h2>
+                <div id="myGrid" class="ag-theme-alpine" style="height: 500px; width: 100%;"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/crossfilter2@1.5.4/crossfilter.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <!-- The main script is last -->
+    <script src="js/main.js"></script>
+</body>
+</html>
